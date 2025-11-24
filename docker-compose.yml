@@ -1,6 +1,19 @@
 version: "3.9"
 
 services:
+  api:
+    build:
+      context: .
+    container_name: person_api
+    ports:
+      - "5000:5000"
+    env_file:
+      - .env
+    volumes:
+      - .:/src
+    depends_on:
+      - postgres
+
   postgres:
     image: postgres:16
     container_name: person_postgres
